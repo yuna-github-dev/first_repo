@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>To-do 목록</th>
+                <th>완료했나요?</th>
+            </tr>
+        </thead>
+        {% for todo in todos %}{% if todo.is_done is False %}
+        <thead>
+            <tr>
+                <th>{{ todo.task }}</th>
+                <th>{{ todo.is_done }}</th>
+            </tr>
+        </thead>
+        {% endif %}{% endfor %}
+    </table>
+</body>
+</html>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "home",
+    "todo",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'yuna.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'home/', 'template')],
+        'DIRS': [os.path.join(BASE_DIR, 'home/', 'template'), os.path.join(BASE_DIR, 'todo/', 'template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
