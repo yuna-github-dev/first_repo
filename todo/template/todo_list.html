@@ -1,23 +1,63 @@
+<!DOCTYPE html>
+
+{% load static %}
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To_Do_List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>To-do 목록</th>
-                <th>완료했나요?</th>
-            </tr>
-        </thead>
-        {% for todo in todos %}
-        <thead>
-            <tr>
-                <th>{{ todo.task }}</th>
-                <th>{{ todo.is_done }}</th>
-            </tr>
-        </thead>
-        {% endfor %}
-    </table>
+
+    <div class="container">
+        <img src="https://cdn.pixabay.com/photo/2016/06/03/08/18/do-it-now-1432945_1280.png" alt=ToDoimg width=300px height=300px>
+        <header id="intro">
+            
+
+            <nav>
+                <ul>
+                    <li class="one">현재 시간</li>
+                    <li class="two">{{ now }}</li>
+                </ul>
+            </nav>
+        </header>
+
+        <main role="main" id="main">
+
+            <article class="one">
+                <form method="POST">
+                    {% csrf_token %} <p1>{{ form.as_p }}</p1>
+                    <button type="submit">추가</button>
+                </form>
+            </article>
+
+            <article class="two">
+                <h3>To Do List</h3>
+                {% for todo in todos %}
+                <p>{{ todo.task }}  <!--{{ todo.is_done }}-->
+                    <a href="{% url 'todo_complete' pk=todo.pk %}">완료 |</a>
+                    <a href="{% url 'todo_del' pk=todo.pk %}">삭제</a>
+                </p>
+                {% endfor %}
+            </article>
+
+            <article class="three">
+                <h3>Complete</h3>
+                {% for todo in todos %} {% if todo.is_done is True %}
+                <p>{{ todo.task }} <!--{{todo.is_done }}-->
+                    <a href="{% url 'todo_del' pk=todo.pk %}">삭제</a>
+                </p>
+                {% endif %}{% endfor %}
+            </article>
+
+        </main>
+
+
+
+    </div>
+
 </body>
 </html>

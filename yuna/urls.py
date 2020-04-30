@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import home_view, var_view
-from todo.views import todo_view, nottodo_view
+from todo.views import todo_view, nottodo_view, delete_todo, todo_done
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,8 @@ urlpatterns = [
     path('var/', var_view),
     path('todos/', todo_view, name="todos"),
     path('todos/in_progress/', nottodo_view, name="in_progress"),
+    path('todos/<pk>/delete', delete_todo, name="todo_del"),
+    path('todos/<pk>/complete', todo_done, name="todo_complete"),
+
     
 ]
